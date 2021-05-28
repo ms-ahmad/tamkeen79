@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block indicators %}
+    <div class="carousel-indicators">
+        {% for  book in books %}
+            <button type="button" data-bs-target="#carouselExampleCaptions"  
+                    {% if forloop.first %} 
+                        class="active"  aria-current="true" 
+                  
+                    {% endif %} 
+  
+                    data-bs-slide-to="{{ forloop.counter0 }}"
+                    aria-label="Slide {{ forloop.counter }}">
+            </button>
+        {% comment %} 
+<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" aria-label="Slide 1" class="active" aria-current="true" ></button>
+<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        {% endcomment %}
+
+        {% endfor %}
+    </div>
+{% endblock indicators %}
+
+
+{% block slide %}
+
+{% for book in books %}
+    <div class="carousel-item   {% if forloop.first %}    active {% endif %}">
+        <img src="{{ book.cover_book.url }}" class="d-block w-100" alt="..." />
+        <div class="carousel-caption d-none d-md-block">
+        <h5>{{ book.title_book }}</h5>
+        <p>{{ book.description_book |truncatechars:100  }}</p> 
+        </div>
+    </div>
+{% comment %} 
+<h1><a href="{% url 'books:Detail'  book.pk %}"> {{ book.title_book }}</a></h1>
+<img src='{{ book.cover_book.url }}' width=300>
+<h3> {{ book.get_Authors }}</h3>
+<p> {{ book.price }}</p>
+<p> {{ book.pages }}</p>
+<p> {{ book.values }}</p>
+<p> {{ book.get_Stores }}</p>
+<p> {{ book.get_Publishers }}</p>
+<p> {{ book.year_publish }}</p>
+<p> {{ book.description_book }}</p>
+<p> {{ book.available }}</p>
+<p> {{ book.publish }}</p>
+<p> {{ book.created }}</p>
+<p> {{ book.y_publish }}</p>
+{{ book.showpic |safe  }}
+<p> {{ book.get_Categories }}</p> {% endcomment %}
+
+{% endfor %}
+{% endblock slide %}

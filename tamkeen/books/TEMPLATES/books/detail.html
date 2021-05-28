@@ -1,0 +1,19 @@
+{% load static %}
+
+<h1> {{ book.title_book }}</h1>
+<img src='{{ book.cover_book.url }}' width=300>
+<h3> {{ book.get_Authors }}</h3>
+<p> {{ book.price }}</p>
+<p> {{ book.pages }}</p>
+<p> {{ book.values }}</p>
+<p> {{ book.get_Stores }}</p>
+<p> {{ book.get_Publishers }}</p>
+<p> {{ book.year_publish }}</p>
+<p> {{ book.description_book }}</p>
+<p> {{ book.available }}</p>
+<p> {{ book.publish }}</p>
+<p> {{ book.created }}</p>
+<p> {{ book.y_publish }}</p>
+{{ book.showpic |safe  }}
+<p> {{ book.get_Categories }}</p>
+
