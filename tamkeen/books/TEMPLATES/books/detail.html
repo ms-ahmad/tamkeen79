@@ -1,19 +1,74 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<h1> {{ book.title_book }}</h1>
-<img src='{{ book.cover_book.url }}' width=300>
-<h3> {{ book.get_Authors }}</h3>
-<p> {{ book.price }}</p>
-<p> {{ book.pages }}</p>
-<p> {{ book.values }}</p>
-<p> {{ book.get_Stores }}</p>
-<p> {{ book.get_Publishers }}</p>
-<p> {{ book.year_publish }}</p>
-<p> {{ book.description_book }}</p>
-<p> {{ book.available }}</p>
-<p> {{ book.publish }}</p>
-<p> {{ book.created }}</p>
-<p> {{ book.y_publish }}</p>
-{{ book.showpic |safe  }}
-<p> {{ book.get_Categories }}</p>
+{% block title %} مكتبة ودار تمكين للنشر - {{ book.title_book }} {% endblock title %}
+{% block content %}
 
+<!-- start datail -->
+<div class="datail" id="datail">
+    <div class="container" >
+        <h2 class="special-heading">{{ book.title_book }}</h2>
+        <p></p>
+        <div class="datail-content">
+            <div class="col">
+                <div class="image image-column">
+                    <img src='{{ book.cover_book.url }}' class="img-fluid  mx-auto d-block" alt="Responsive image">
+                </div>
+            </div>
+       
+
+            <div class="col">
+                <!-- start datail -->
+                <div class="det">
+                    <!-- <i class="fas fa-edit fa-2x "></i> -->
+                    <div class="text"><h3><span>المؤلف: </span>{{ book.get_Authors }}</h3></div>
+                    <div class="text"><h3><span>السعر: </span>{{ book.price }}</h3></div>
+                    <div class="text"><h3><span>عدد الصفحات: </span>{{ book.pages }}</h3></div>
+                    <div class="text"><h3><span>عدد الأجزاء: </span>{{ book.values }}</h3></div>
+                    <div class="text"><h3><span>سنة النشر: </span>{{ book.y_publish }}</h3></div>
+
+                    <div class="text"><h3><span> المكتبة: </span>{{ book.get_Stores }}</h3></div>
+                    <div class="text"><h3><span>دور النشر: </span> {{ book.get_Publishers }}</h3></div>                   
+                    <div class="text"><h3><span> متوفر: </span>{% if book.available %}متوفر
+                    {% else %}
+                    <text class="btn-danger">غير متوفر
+                    {% endif %}
+                    </h3></div>
+                             
+                    <div class="text"><h3><span>الفئة : </span>{{ book.get_Categories }}</h3></div>
+                    <div class="text"><h3><span> </h3></div>
+                </div>
+                <!-- end datail -->               
+               
+            </div>
+           
+           
+       
+        </div>
+
+        <div class=" description">
+
+            <div class="col " >
+                <!-- start datail -->
+                    <div class="det">
+                        {% comment %} <i class="fas fa-taxi fa-2x "></i> {% endcomment %}
+                        <div class="text">
+                            <h3>نبذة</h3>
+                            <p>{{ book.description_book }}</p>
+                        </div>
+                    </div>
+                    <!-- end datail -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End datail -->
+<div class="date-content">
+    
+  
+
+
+ 
+    
+</div>
+{% endblock content %}

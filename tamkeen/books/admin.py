@@ -51,7 +51,7 @@ class BookAdmin(admin.ModelAdmin):
     list_display = ("title_book",   "available", "y_publish",
                     "get_Categories", "publish", "showinSlideShow",)
     list_editable = ("available", "publish", "showinSlideShow",)
-    list_filter = ("publish", "created", "year_publish", "available", "Categories","Stores","Publishers",)
+    list_filter = ("publish", "created", "year_publish", "available", "Categories","stores","Publishers",)
     search_fields = ("title_book", "auther", "description_book", )
 
 

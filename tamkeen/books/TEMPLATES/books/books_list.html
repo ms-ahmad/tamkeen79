@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %} {{books.store.name_store}} {% endblock title %}
+{% block content %}
+    <div class="container">
+        {% if section %}   
+
+
+                <h1>{{section}}</h1>
+            
+        {% endif %} 
+        
+        <div id="book-list">
+            {% include "books/books_list_ajax.html" %}
+        </div>
+
+    </div>
+{% endblock content %}
+{% block domready %}
+    var page=1;
+    var empty_page = false;
+    var block_request = false;
+
+    $(window).scroll(function(){
+        var margin = $(document).height() - $(window).height()-10;
+        if($(window).scrollTop()>margin && empty_page==false && block_request == false){
+            block_request = true;
+            page+=1;
+            $.get('?page='+page, function(date){
+                if(date==''){
+                    empty_page=true;
+                }else{
+                    block_request = false;
+                    $('#book-list').append(date);
+                }
+            });
+        }
+
+    });
+
+{% endblock domready %}

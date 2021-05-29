@@ -1,4 +1,5 @@
 /* start variables */
+/* by ahmad */
 :root {
   --main-color: #10cab7;
   --secondary-color: #2c4755;
@@ -21,11 +22,15 @@ body {
   font-family: "Work Sans", sans-serif;
   font-family: "Almarai", sans-serif;
 }
+a {
+  text-decoration: none !important;
+}
 .container {
   padding-left: 15px;
   padding-right: 15px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 20px;
 }
 @media (min-width: 768px) {
   .container {
@@ -48,7 +53,7 @@ body {
 .special-heading {
   color: #aaa;
   font-size: 60px;
-  text-align: center;
+  text-align: center !important;
   font-weight: 800;
   letter-spacing: -3px;
   margin: 0;
@@ -57,7 +62,7 @@ body {
   margin: -20px 0 0 0;
   font-size: 16px;
   font-weight: bold;
-  text-align: center;
+  text-align: center !important;
   color: var(--tamkeen-color);
 }
 @media (max-width: 767px) {
@@ -175,7 +180,7 @@ body {
 .header .intro-text {
   left: 50%;
   top: 50%;
-  text-align: center;
+  text-align: center !important;
   /* transform: translate(-20%, -20%);
    width: 320px;
   max-width: 150%; */
@@ -208,6 +213,20 @@ body {
   margin-top: 5px;
   padding: 5px;
 }
+
+.card  .info h4,
+.card  .info span {
+  text-align: right !important;
+  font-size: 14px;
+  padding-right: 5px;
+  font-weight: bold !important;
+  font-family: "Almarai", sans-serif !important;
+}
+.card  .info span {
+  color: #07a99c;
+}
+
+
 /* end news-prode */
 
 /* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// */
@@ -264,12 +283,14 @@ body {
   max-height: 250px;
 }
 .news-pro .news-pro-content .card .info {
-  padding: 20px;
+  padding: 20px 5px;
 }
-.news-pro .news-pro-content .card .info h3 {
-  text-align: center;
+.news-pro .news-pro-content .card .info h3,
+.news-pro .news-pro-content .card .info a {
+  text-align: center !important;
   font-size: 17px;
   font-weight: bold;
+  color: #07a99c;
 }
 .news-pro .news-pro-content .card .info p {
   color: #777;
@@ -304,10 +325,21 @@ body {
 .top-sell .top-sell-content .card .info {
   padding: 20px;
 }
-.top-sell .top-sell-content .card .info h3 {
-  text-align: center;
+.top-sell .top-sell-content .card .info h3,
+.news-pro .news-pro-content .card .info a {
+  text-align: center !important;
   font-size: 17px;
   font-weight: bold;
+}
+.card .info a {
+  text-align: center !important;
+  font-size: 14px !important;
+  font-weight: bold  !important;
+}
+.top-sell .top-sell-content .card .info h4 {
+  text-align: right !important;
+  font-size: 14px !important;
+  color: #10cab7 !important;
 }
 .top-sell .top-sell-content .card .info p {
   color: #777;
@@ -334,12 +366,12 @@ body {
 .services .services-content .srv {
   /* display: flex; */
   margin-bottom: 20px;
-  text-align: center;
+  text-align: center !important;
 }
 @media (max-width: 767px) {
   .services .services-content .srv {
     flex-direction: column;
-    text-align: center;
+    text-align: center !important;
   }
 }
 .services .services-content .srv i {
@@ -349,7 +381,8 @@ body {
 .services .services-content .srv .text {
   flex: 1;
 }
-.services .services-content .srv .text h3 {
+.services .services-content .srv .text h3,
+.news-pro .news-pro-content .card .info a {
   margin: 0 0 20px;
 }
 .services .services-content .srv .text p {
@@ -358,7 +391,7 @@ body {
   line-height: 1.8;
 }
 .services .services-content .col .image {
-  text-align: center;
+  text-align: center !important;
   position: relative;
 }
 .services .services-content .col .image::before {
@@ -374,11 +407,7 @@ body {
 .services .services-content .col .image img {
   width: 260px;
 }
-@media (max-width: 1199px) {
-  .image-column {
-    display: none;
-  }
-}
+
 /* End services */
 
 /* start portfolio */
@@ -404,7 +433,8 @@ body {
 .portfolio .portfolio-content .card .info {
   padding: 20px;
 }
-.portfolio .portfolio-content .card .info h3 {
+.portfolio .portfolio-content .card .info h3,
+.news-pro .news-pro-content .card .info a {
   margin: 0;
 }
 .portfolio .portfolio-content .card .info p {
@@ -428,7 +458,7 @@ body {
 @media (max-width: 991px) {
   .about .about-content {
     flex-direction: column;
-    text-align: center;
+    text-align: center !important;
   }
 }
 .about .about-content .image {
@@ -502,7 +532,7 @@ body {
 .contact .info {
   padding-top: var(--section-padding);
   padding-bottom: var(--section-padding);
-  text-align: center;
+  text-align: center !important;
 }
 .contact .info .lable {
   font-size: 35px;
@@ -542,7 +572,7 @@ body {
   background-color: var(--secondary-color);
   color: white;
   padding: 30px 10px;
-  text-align: center;
+  text-align: center !important;
   font-size: 18px;
   direction: rtl;
 }
@@ -553,3 +583,132 @@ body {
 }
 /* start footer  */
 /* ///////////////////////* */
+.card {
+  text-align: center !important;
+}
+.card .card-text {
+  text-align: center;
+}
+
+/* start detail css  */
+.date-content {
+  direction: rtl;
+  background-color: var(--section-background);
+  padding: 15px;
+}
+
+.date-content h1 {
+  color: var(--tamkeen-color);
+  margin: 30px 50px;
+}
+.date-content img {
+  margin: auto;
+}
+
+/* start datail */
+.datail {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+  background-color: var(--section-background);
+}
+.datail .datail-content {
+  display: grid;
+  /* grid-template-columns: repeat(auto-fill,  minmax(300px, 1fr)); */
+  padding-left: 25px;
+  grid-template-columns: 250px auto;
+  grid-gap: 20px;
+  margin-top: 30px;
+}
+
+@media (max-width: 1000px) {
+  .datail .datail-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-gap: 10px;
+    margin-top: 30px;
+  }
+}
+.datail .description {
+  display: grid;
+  grid-template-columns: repeat(auto-fill);
+  padding-left: 30px !important;
+  line-height: 2;
+}
+.datail .description p {
+  text-align: justify !important;
+}
+.datail .datail-content .det,
+.datail .description .det {
+  /* display: flex; */
+  margin-bottom: 20px;
+  margin-top: 20px;
+  text-align: right !important;
+}
+/* @media (max-width: 767px) {
+  .datail .datail-content .det {
+    flex-direction: column;
+    text-align: center !important;
+  }
+} */
+.datail .datail-content .det i {
+  color: var(--main-color);
+  flex-basis: 60px;
+}
+.datail .datail-content .det .text,
+.datail .description .det .text {
+  flex: 1;
+}
+.datail .datail-content .det .text span {
+  color: var(--tamkeen-color);
+  margin: auto 10px;
+}
+.datail .datail-content .det .text h3,
+.news-pro .news-pro-content .card .info a,
+.datail .description .det .text h3,
+.news-pro .description .card .info a {
+  font-size: 18px;
+  margin: 0 0 20px;
+}
+.datail .description .det .text h3{
+    font-size: 20px;
+}
+.datail .datail-content .det .text p,
+.datail .description .det .text p {
+  color: #333;
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+.datail .datail-content .col .image {
+  text-align: center !important;
+  position: relative;
+}
+
+.datail .datail-content .col .image img {
+  width: 100%;
+}
+/* @media (max-width: 1199px) {
+  .image-column {
+    display: none;
+  }
+} */
+/* End datail */
+/* end detail css  */
+
+
+/* start list books  */
+#book-list {
+   display: grid;
+  grid-template-columns: repeat(auto-fill,  minmax(300px, 1fr));
+  padding-left: 25px;
+  /* grid-template-columns: auto auto auto auto; */
+  grid-gap: 20px;
+  margin-top: 30px;
+}
+#book-list img{
+  width: 250px;
+  height: 300px;
+  max-width: 250px;
+  max-height: 300px;
+}
+/* end list books  */

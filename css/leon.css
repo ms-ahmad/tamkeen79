@@ -374,11 +374,7 @@ body {
 .services .services-content .col .image img {
   width: 260px;
 }
-@media (max-width: 1199px) {
-  .image-column {
-    display: none;
-  }
-}
+
 /* End services */
 
 /* start portfolio */

@@ -2,12 +2,14 @@ from django.db import models
 from account.models import User
 from django.utils import timezone
 import datetime
+from django.utils.text import slugify
 
 # Create your models here.
 
 
 class Stores(models.Model):
     name_store = models.CharField(max_length=255, verbose_name="اسم المتجر")
+    # slug = models.SlugField(max_length=20, allow_unicode=True ,null=True)
     address_store = models.CharField(
         max_length=50, blank=True, null=True, verbose_name="عنوان المتجر")
     phone_store = models.PositiveIntegerField(
@@ -19,14 +21,19 @@ class Stores(models.Model):
         upload_to='stores/logos/', verbose_name="الشعار", blank=True, null=True)
     description_store = models.CharField(
         max_length=255, verbose_name="نبذة عن المتجر", blank=True, null=True)
-    dirctors_store = models.ManyToManyField(
-        User, verbose_name="المدراء", blank=True)
+    dirctors_store = models.ManyToManyField(User, verbose_name="المدراء", blank=True)
     publish = models.BooleanField(("يتم نشره"), default=False)
-    created = models.DateField(
-        ("تاريخ الإضافة"),  auto_now_add=True, null=True)
+    created = models.DateField( ("تاريخ الإضافة"),  auto_now_add=True, null=True)
 
     def __str__(self):
         return self.name_store
+
+    # def save(self, *args, **kwargs):
+    #     value = self.name_store
+    #     self.slug = slugify(value, allow_unicode=True)
+    #     super().save(*args, **kwargs)
+
+
 
     class Meta:
 
@@ -103,7 +110,7 @@ class Book(models.Model):
     values = models.PositiveIntegerField(
         ("عدد الاجزاء"), blank=True, null=True, default=1)
     Categories = models.ManyToManyField(Categories, verbose_name=("الفئة"))
-    Stores = models.ManyToManyField(Stores, verbose_name=("المتجر"))
+    stores = models.ManyToManyField(Stores, verbose_name=("المتجر"), related_name="store_book",)
     Publishers = models.ManyToManyField(Publishers, verbose_name=("الناشر"))
     year_publish = models.DateField(
         ("سنة النشر"), auto_now_add=False, blank=True, null=True)
@@ -135,7 +142,7 @@ class Book(models.Model):
 
 
     def get_Stores(self):
-        return " - ".join([b.name_store for b in self.Stores.all()])
+        return " - ".join([b.name_store for b in self.stores.all()])
 
 
 

@@ -60,16 +60,34 @@
   padding: 15px 1px;
   border-radius: 20px;
 }
-.owl-carousel .info h3 {
-  text-align: center;
+.owl-carousel .info h3,
+.owl-carousel .info a {
+  text-align: center !important;
   font-size: 17px;
+  font-weight: bold !important;
+  font-family: "Almarai", sans-serif !important;
+  color: #07a99c;
+}
+.owl-carousel .info span {
+  color: #07a99c;
+}
+.owl-carousel .info h4 {
+  text-align: right;
+  font-size: 14px;
+  padding-right: 5px;
   font-weight: bold !important;
   font-family: "Almarai", sans-serif !important;
 }
 .owl-carousel .info .card-text {
-  text-align: justify;
-  direction: rtl;
+ 
+
   padding: 5px;
+  color: #555;
+    line-height: 1.5;
+    margin-bottom: 0;
+    text-align: justify;
+    direction: rtl;
+    font-size: 14px;
 }
 .owl-carousel .card {
   width: 100%;
