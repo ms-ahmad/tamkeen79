@@ -1,80 +1,24 @@
-{% extends 'baseHome.html' %}
+{% extends 'tbase.html' %}
 {% load static %}
+
+
 
 
 {% block content %}
 
-    {% include 'books/partial/slide.html' %}
+
+
+    {% include 'Home/slide.html' %}
+    {% comment %} {% include 'books/partial/slide.html' %} {% endcomment %}
+
+    {% include 'books/partial/whytamkeen.html' %}
     {% include 'books/partial/news-pro.html' %}
-    {% include 'books/partial/top-sell.html' %}
+    {% comment %} {% include 'books/partial/top-sell.html' %} {% endcomment %}
      
-     
-     <!-- start services فروعنا-->
-    <div class="services" id="stor">
-      <div class="container">
-        <h2 class="special-heading">فروعنا</h2>
-        <p>فروع تمكين في داخل وخارج العراق</p>
-        <div class="services-content" style="direction: rtl;">
-          <!-- ---------- -->
-          <div class="srv">
-            <div class="card">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6661.579310230961!2d44.402733743190744!3d33.40265152507063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15579d52f7494751%3A0x24d11086779179b9!2z2YbYp9iv2Yog2KfZhNmG2YHYtyDYp9mE2LHZitin2LbZig!5e0!3m2!1sen!2siq!4v1621725241709!5m2!1sen!2siq"
-                height="270"
-                style="border: 0"
-                allowfullscreen=""
-                loading="lazy"
-              ></iframe>
-              <div>
-                <i class="fas fa-map-marked fa-2x"></i>
-                <h3>الفرع الأول</h3>
-                <p>بغداد - حي أور - قرب جامع</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="srv">
-            <div class="card">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6661.579310230961!2d44.402733743190744!3d33.40265152507063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15579d52f7494751%3A0x24d11086779179b9!2z2YbYp9iv2Yog2KfZhNmG2YHYtyDYp9mE2LHZitin2LbZig!5e0!3m2!1sen!2siq!4v1621725241709!5m2!1sen!2siq"
-                height="270"
-                style="border: 0"
-                allowfullscreen=""
-                loading="lazy"
-              ></iframe>
-              <div>
-                <i class="fas fa-map-marked fa-2x"></i>
-                <h3>الفرع الثاني</h3>
-                <p>كربلاء - حي الحسين </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="srv">
-            <div class="card">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6661.579310230961!2d44.402733743190744!3d33.40265152507063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15579d52f7494751%3A0x24d11086779179b9!2z2YbYp9iv2Yog2KfZhNmG2YHYtyDYp9mE2LHZitin2LbZig!5e0!3m2!1sen!2siq!4v1621725241709!5m2!1sen!2siq"
-                height="270"
-                style="border: 0"
-                allowfullscreen=""
-                loading="lazy"
-              ></iframe>
-              <div>
-                <i class="fas fa-map-marked fa-2x"></i>
-                <h3>الفرع الثالث</h3>
-                <p>البصرة - حي التأميم </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- ---------- -->
-        </div>
-      </div>
-    </div>
-    <!-- End services فروعنا-->
-
-
     {% include 'books/partial/top-ranks.html' %}
+    {% include 'books/partial/top-order.html' %}
+    {% include 'books/partial/coming-soon.html' %}
 
 
 {% endblock content %}
+

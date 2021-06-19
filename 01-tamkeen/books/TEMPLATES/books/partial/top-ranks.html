@@ -1,0 +1,31 @@
+{% load static %}
+
+       <!-- begin:partner -->
+    <div id="partner">
+      <div class="container">
+            <div class="row">
+              <div class="col-md-12 ">
+                <div class="heading-title bg-white">
+                  <h2>الأعلى تقييما</h2>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="jcarousel-wrapper">
+                            <div class="jcarousel">
+                              <ul>
+                                {% for book in top_ranks %}
+                                      <li><a href="{% url 'books:Detail' book.id  %}"><img src="{{book.cover_book.url}}" alt="{{ book.title_book }}"></a></li>
+                                {% endfor %}
+                              </ul>
+                            </div>
+                            <a href="#" class="jcarousel-control-prev"><i class="fa fa-angle-left"></i></a>
+                            <a href="#" class="jcarousel-control-next"><i class="fa fa-angle-right"></i></a>
+                            <!-- <p class="jcarousel-pagination"></p> -->
+                </div>
+              </div>
+            </div>
+      </div>
+    </div>
+      <!-- end:partner -->

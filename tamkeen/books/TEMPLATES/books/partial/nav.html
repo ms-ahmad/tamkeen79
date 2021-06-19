@@ -1,0 +1,44 @@
+{% load static %}
+
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse" id="navbar-top">
+  <ul class="nav navbar-nav navbar-left">
+     <li class="active"><a href="/">الصفحة الأولى</a></li>
+
+    <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">الفئات <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            {% for cat in categories %}
+                  <li><a href="{% url 'books:books_category' cat.id %}">{{ cat.name_category }}</a></li>
+            {% endfor %}
+
+          </ul>
+    </li>
+
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">دور النشر <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            {% for publisher in publishers %}
+                  <li><a href="{% url 'books:books_Publisher' publisher.id %}">{{ publisher.name_publisher }}</a></li>
+            {% endfor %}
+
+        </ul>
+    </li>
+
+
+    {% if user.is_authenticated %}
+
+          <li><a href="{% url 'orders:cart' %}" class="btn btn-outline-primary" style="font-size: 14px; margin: 22px 3px; padding: 3px 6px;"><i class="fa fa-2x fa-shopping-cart"></i></a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{request.user.username}} <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                  <li><a href="{% url 'account:changepw' %}" style="font-size: 14px; margin: 22px 3px; padding: 3px 6px;"><i style="margin-left: 10px" class="fa  fa-key"></i>تغيير كلمة المرور</a></li>
+                  <li><a href="{% url 'account:logout' %}" style="font-size: 14px; margin: 22px 3px; padding: 3px 6px;"><i style="margin-left: 10px" class="fa  fa-sign-out"></i>تسجيل الخروج</a></li>
+            </ul>
+    {% else %}
+          <li><a href="#modal-signin" class="signin" data-toggle="modal" data-target="#modal-signin">تسجيل الدخول</a></li>
+          <li><a href="{% url 'account:register2' %}" class="signup">تسجيل</a></li>
+
+    {% endif %}
+  </ul>
+</div><!-- /.navbar-collapse -->

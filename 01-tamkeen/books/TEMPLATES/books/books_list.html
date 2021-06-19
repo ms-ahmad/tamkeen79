@@ -1,0 +1,84 @@
+{% extends 'tbase.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<!--ترجمه شده توسط مرجع تخصصی برنامه نویسان-->
+
+
+
+
+    <!-- begin:content -->
+    <div id="content">
+      <div class="container">
+        <div class="row">
+          <!-- begin:article -->
+          <div class="col-md-9 col-md-push-3 " style="padding-top: 15px; background-color: white; margin-top: 10px;">
+           <h2>           
+          كتب:    {{ section }}
+           </h2>
+            <!-- begin:sorting -->
+          
+            
+       
+            <!-- end:sorting -->
+
+            <!-- begin:product -->
+            <div id="book-list" class="row container-realestate">
+
+
+                    {% include 'books/books_list_ajax.html' %}
+      
+            
+            </div>
+            <!-- end:product -->
+
+   
+   
+
+          </div>
+          <!-- end:article -->
+<!--ترجمه شده توسط مرجع تخصصی برنامه نویسان-->
+          <!-- begin:sidebar -->
+             {% include 'books/partial/sidebar.html' %}
+          <!-- end:sidebar -->
+          
+        </div>
+      </div>
+    </div>
+    <!-- end:content -->
+
+
+
+{% endblock content %}
+
+
+
+
+
+{% block domready %}
+<script>
+    var page=1;
+    var empty_page = false;
+    var block_request = false;
+
+    $(window).scroll(function(){
+        var margin = $(document).height() - $(window).height()-10;
+        if($(window).scrollTop()>margin && empty_page==false && block_request == false){
+            block_request = true;
+            page+=1;
+            $.get('?page='+page, function(date){
+                if(date==''){
+                    empty_page=true;
+                }else{
+                    block_request = false;
+                    $('#book-list').append(date);
+                }
+            });
+        }
+
+    });
+
+</script>
+{% endblock domready %}

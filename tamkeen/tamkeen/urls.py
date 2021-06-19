@@ -15,6 +15,7 @@ Including another URLconf
 """
 
 from django.contrib import admin
+from django.urls.conf import re_path
 from books import views as bookviews
 from django.urls import path, include
 
@@ -23,8 +24,14 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('comment/', include('comment.urls')),
     path('', bookviews.Home, name="Homesite"),
     path('books/', include('books.urls')),
+    path('orders/', include('orders.urls')),
+    path('', include('django.contrib.auth.urls')),
+    path('account/', include('account.urls')),
+    re_path(r'^ratings/', include('star_ratings.urls', namespace='ratings')),
+
 
 ]
 

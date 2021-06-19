@@ -39,7 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'books.apps.BooksConfig',
     'account.apps.AccountConfig',
-    
+    'star_ratings',
+    'orders.apps.OrdersConfig',
+    'slides.apps.SlidesConfig',
+    'comment',
+
+
+
 ]
 
 MIDDLEWARE = [
@@ -106,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ar'
 
 TIME_ZONE = 'UTC'
 
@@ -124,8 +130,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'static'
 
-MEDIA_DIR='/media/'
+MEDIA_DIR = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -133,4 +140,21 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-AUTH_USER_MODEL = 'account.User'
+# AUTH_USER_MODEL = 'account.User'
+
+STAR_RATINGS_STAR_HEIGHT = 25
+
+# ///////////////////////////////
+LOGIN_URL = "account:userlogin"
+LOGOUT_URL = "account:logout"
+LOGIN_REDIRECT_URL = "orders:cart"
+# ///////////////////////////////
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'temkeen82@gmail.com'
+# EMAIL_HOST_PASSWORD = 'aA@110110'
+# EMAIL_PORT = 587

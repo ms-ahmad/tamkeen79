@@ -1,0 +1,22 @@
+{% extends 'tbase.html' %}
+{% load static %}
+
+
+
+
+{% block content %}
+
+    {% include 'Home/slide.html' %}
+    {% comment %} {% include 'books/partial/slide.html' %} {% endcomment %}
+
+    {% include 'books/partial/whytamkeen.html' %}
+    {% include 'books/partial/news-pro.html' %}
+    {% comment %} {% include 'books/partial/top-sell.html' %} {% endcomment %}
+     
+    {% include 'books/partial/top-ranks.html' %}
+    {% include 'books/partial/top-order.html' %}
+    {% comment %} {% include 'books/partial/coming-soon.html' %} {% endcomment %}
+
+
+{% endblock content %}
+

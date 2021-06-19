@@ -1,0 +1,68 @@
+{% load static %}
+
+    <!-- begin:header -->
+    <div id="header" class="header-slide">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-md-3">
+            <div class="quick-search">
+              <div class="row">
+                <form role="form">
+           
+                  <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                      <label for="location">عنوان الكتاب</label>
+                      <input type="text" name="title-book" class="form-control">
+                      {{ a }}
+                    </div>
+                    <div class="form-group">
+                      <label for="bathroom">الفئات</label>
+                      <select class="form-control">
+                               
+                                {% if categories  %}
+                                {% for cat in categories %}
+                                         <option>{{ cat.name_category }}</option>
+                                {% endfor %}
+                                {% else %}
+ <option>22</option>
+                                {% endif %}
+                       
+                      </select>
+
+{% comment %}                       
+authors
+publishers {% endcomment %}
+                    </div>
+                    <div class="form-group">
+                      <label for="type">المؤلف</label>
+                      <select class="form-control">
+                        <option>تمكين</option>
+                        <option>تمكين 2</option>
+                        <option>فرع تمكين</option>
+                        <option>مكتبة الراية</option>
+                        <option>تجاری</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="maxprice">دور النشر</label>
+                      <select class="form-control">
+                        <option>تمكين</option>
+                        <option>دار المعارف</option>
+                        <option>الرضوان</option>
+                        <option>الثورة الاسلامية</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-sm-12"><input type="submit" name="submit" value="أبحث" class="btn btn-primary btn-lg btn-block"></div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end:header -->
+
+

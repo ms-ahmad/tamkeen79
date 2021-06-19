@@ -1,36 +1,111 @@
-
-
 {% comment %} {% load thumbnail %} {% endcomment %}
 
 
-
-
+{% if books %}
 
 
 
 {% for book in books %}
 
+<div class="col-md-12 col-sm-12 col-xs-12" >
+                <div class="property-container">
+                  <div class="property-content-list">
+                    <div class="property-image-list">
+                       <div class="bg-image"> </div>
+                       <img src="{{ book.cover_book.url }}" alt="{{ book.title_book}}">
+                      <div class="property-price">
+                          <span>
+                              {% for Publisher in book.Publishers.all %}
+                              {% if not forloop.first %} - {% endif %}
+                              <a href="{% url 'books:books_Publisher' Publisher.id %}">{{Publisher.name_publisher}}</a>
+                              {% endfor %}
+                          </span>
+                      </div>
+                      <div class="property-status">
+                          <span>
+                            {% for cat in book.Categories.all %}
+                            {% if not forloop.first %} - {% endif %}
+                            <a href="{% url 'books:books_category' cat.id %}">{{cat.name_category}}</a>
+                            {% endfor %}
+                          </span>
+                      </div>
+                      <div class="property-features">
+                          <span title="عدد الصفحات"><i class="fa fa-book"></i> {{book.pages}} </span>
+                          <span title="سنة النشر"><i class="fa fa-calendar"></i>
+                            {{ book.y_publish }}
+                          </span>
+                          <span title="التقييم"><i class="fa fa-star"></i>
+                            {% for element in book.rate.all %}
+                            {{ element.average |floatformat:1 }}
+                            {% endfor %}
+                          </span>
+                          <span title="السعر"><i class="fa fa-money "></i> {{book.price}} </span>
+                      </div>
+                    </div>
+                    <div class="property-text" style="background: #f4f4f4 !important;">
+                        <h3><a href="{% url 'books:Detail' book.id  %}">{{ book.title_book }}</a> </h3>
+                        <p>{{book.description_book |truncatechars:150}}</p>    
+                        <p><a href="{% url 'books:Detail' book.id  %}" class="btn btn-primary">أقراء المزيد »</a></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-    <div class="book">
-     <div class="media-29101">
-                                <div class="card">
-                                <a href="{% url 'books:Detail' book.id %}" > <img src="{{book.cover_book.url}}" alt="" /></a>
-                                <div class="info">
-                                    <a href="{% url 'books:Detail' book.id %}"> <h3>{{ book.title_book }}</h3></a>
-                                     <h4>السعر: <span>{{book.price}}</span></h4> 
-                                     <h4>عدد الصفحات: <span>{{book.pages}}</span></h4> 
-                                     <h4>المكتبة: <span>{{book.get_Stores}}</span></h4> 
-                                     <p class="card-text">{{book.description_book |truncatechars:90}}</p>
-                                     {% for store in book.Stores.all %}
-                                     {{store.name_store }}
-                                     {% endfor %} 
-                                </div>
-                                </div>
-                            </div>
-
+{% comment %} 
+<!-- break -->
+<!-- div1-->
+<div class="col-md-3 col-sm-6 col-xs-12" style="margin:-10px; height:250px">
+  <!-- div2-->
+  <div class="property-container">
+    <div class="property-image">
+      <div class="bg-image"> </div>
+      <img src="{{ book.cover_book.url }}" alt="{{ book.title_book}}">
+      <div class="property-price">
+        <span>
+          {% for Publisher in book.Publishers.all %}
+          {% if not forloop.first %} - {% endif %}
+          <a href="{% url 'books:books_Publisher' Publisher.id %}">{{Publisher.name_publisher}}</a>
+          {% endfor %}
+        </span>
+      </div>
+      <div class="property-status">
+        <span>
+          {% for cat in book.Categories.all %}
+          {% if not forloop.first %} - {% endif %}
+          <a href="{% url 'books:books_category' cat.id %}">{{cat.name_category}}</a>
+          {% endfor %}
+        </span>
+      </div>
     </div>
+    <div class="property-features">
+      <span title="عدد الصفحات"><i class="fa fa-book"></i> {{book.pages}} </span>
+      <span title="سنة النشر"><i class="fa fa-calendar"></i>
+        {{ book.y_publish }}
+      </span>
+      <span title="التقييم"><i class="fa fa-star"></i>
+        {% for element in book.rate.all %}
+        {{ element.average |floatformat:1 }}
+        {% endfor %}
+      </span>
+      <span title="السعر"><i class="fa fa-money "></i> {{book.price}} </span>
+    </div>
+    <div class="property-content">
+      <h3><a href="{% url 'books:Detail' book.id  %}">{{ book.title_book }}</a> </h3>
+      <p>{{book.description_book |truncatechars:90}}</p>
+    </div>
+  </div>
+  <!-- div2-->
+</div>
 
+<!-- div1-->
+<!-- break --> 
+{% endcomment %}
 
 {% endfor %}
 
+{% else %}
+<h3 class="text-center"> لا توجد نتائج 
+</h3>
+<br><br>
 
+{% endif %}

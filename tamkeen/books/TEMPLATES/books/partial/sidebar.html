@@ -1,0 +1,113 @@
+{% load static %}
+<!-- begin:sidebar -->
+<div class="col-md-3 col-md-pull-9 sidebar">
+
+{% if object %}
+  {% if user.is_authenticated %}
+        <div class="widget widget-sidebar widget-white">
+          <div class="widget-white favorite">
+            <a id="addto2" class="btn" data-toggle="modal" data-target="#staticmodal">
+              <i class="fa   fa-shopping-cart " style="font-size:20px; color:tomato;" aria-hidden="true"></i> إضف إلى سلة
+              المشتريات
+            </a>
+
+
+          </div>
+        </div>
+  {% endif %}
+{% endif %}
+
+  {% if comming_soon %}
+  <!-- break -->
+  <div class="widget widget-sidebar widget-white text-center">
+    <div class="widget-header">
+      <h3>ترقبوا</h3>
+    </div>
+  
+      {% for book in comming_soon %}
+      <a href="{% url 'books:Detail' book.id  %}" style="margin:5px auto;">{{ book.book_title }}</a>
+      <img src="{{ book.cover_book.url }}" style="width:100%">
+            {% for auther in book.auther.all %}
+                  {% if not forloop.first %} - {% endif %}  
+                    <a href="{% url 'books:books_author' auther.id %}"> {{ auther.name_author}}</a> 
+                
+            {% endfor %}  
+
+      {% endfor %}
+
+   
+  </div>
+  <!-- break -->
+  {% endif %}
+
+
+
+  {% if book_from_publisher %}
+  <!-- break -->
+  <div class="widget widget-sidebar widget-white">
+    <div class="widget-header">
+      <h3>كتب من نفس الناشر</h3>
+    </div>
+    <ul class="list-check">
+      {% for book in book_from_publisher %}
+      <li><a href="{% url 'books:Detail' book.id  %}">{{ book.title_book }}</a></li>
+      {% endfor %}
+
+    </ul>
+  </div>
+  <!-- break -->
+  {% endif %}
+
+
+  {% if book_from_author %}
+  <!-- break -->
+  <div class="widget widget-sidebar widget-white">
+    <div class="widget-header">
+      <h3>كتب من نفس المؤلف</h3>
+    </div>
+    <ul class="list-check">
+      {% for book in book_from_author %}
+      <li><a href="{% url 'books:Detail' book.id  %}">{{ book.title_book }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  <!-- break -->
+
+  {% endif %}
+
+  {% if book_from_Categories %}
+  <!-- break -->
+  <div class="widget widget-sidebar widget-white">
+    <div class="widget-header">
+      <h3>كتب من نفس الفئة</h3>
+    </div>
+    <ul class="list-check">
+      {% for book in book_from_Categories %}
+      <li><a href="{% url 'books:Detail' book.id  %}">{{ book.title_book }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  <!-- break -->
+  {% endif %}
+
+
+
+  {% if random_book %}
+  <!-- break -->
+  <div class="widget widget-sidebar widget-white">
+    <div class="widget-header">
+      <h3>كتب عشوائية</h3>
+    </div>
+    <ul class="list-check">
+      {% for book in random_book %}
+      <li><a href="{% url 'books:Detail' book.id  %}">{{ book.title_book }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  <!-- break -->
+  {% endif %}
+
+
+
+</div>
+<!-- end:sidebar -->

@@ -1,0 +1,99 @@
+{% load static %}
+
+
+<!-- begin:header -->
+
+
+
+
+
+
+<div id="header" class="header-slide">
+<div class="container">
+        <div class="row">
+          <div class="col-md-10 col-md-offset-1 col-sm-12">
+            <div class="quick-search">
+              <div class="row">
+                <form id="searchform"  action="books/search/">
+                
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                      <div class="form-group">
+                        <label for="title_book">عنوان الكتاب</label>
+                        <input type="text" id="title_book" class="form-control" />
+                      
+                      </div>
+
+                    </div>
+                     <!-- break -->
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                      <div class="form-group">
+                          <label for="type">المؤلف</label>
+                          <select id="author" class="form-control">
+                            <option value="0"></option>
+                            {% for author in authors %}
+                              <option value="{{author.id}}">{{ author.name_author }}</option>
+                            {% endfor %}
+                          </select>
+                      </div>
+                    
+                    </div>
+
+                    <!-- break -->
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                      <div class="form-group">
+                      <label for="maxprice">دور النشر</label>
+                        <select id="publisher" class="form-control">
+                          <option option value="0"></option>
+                          {% for publisher in publishers %}
+                              <option value="{{ publisher.id}}">{{ publisher.name_publisher }}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+              
+                    </div>
+                    <!-- break -->  
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                      <div class="form-group">
+                      <label for="categ">الفئات</label>
+                        <select id="categ"  class="form-control">
+                          <option value="0"></option>
+                          {% for cat in categories %}
+                            <option value="{{cat.id}}">{{ cat.name_category }}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                      </div>
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                      <div class="form-group">
+                        <label for="maxprice">&nbsp;</label>
+                        <input onclick="setAction()" type="submit" id="submit" value="أبحث" class="btn btn-primary btn-block submit">
+                      </div>
+                   </div>
+
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+</div>
+<!-- end:header -->
+<script> 
+function setAction(){
+
+cat_id=document.getElementById("categ").value;
+publisher_id=document.getElementById("publisher").value;
+author_id=document.getElementById("author").value;
+title_book=document.getElementById("title_book").value;
+
+
+if (title_book.trim() == null ||title_book.trim() == ""){
+title_book ="&";
+}
+
+document.getElementById("searchform").action +=cat_id+"/"+publisher_id+"/"+author_id+"/"+title_book;
+
+}
+  
+</script>

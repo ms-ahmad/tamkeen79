@@ -1,42 +1,32 @@
 {% load static %}
 
-
-
-
-   <!-- start portfolio الاكثر تقييما-->
-    <div class="portfolio" id="portfolio">
-        <div class="container">
-            <h2 class="special-heading">الأكثر تقييما</h2>
-            <p>إصدارات تمكين التي حصلت على التقييم الاعلى من الزوار</p>
-        </div>
-    </div>
-
-    <!-- //////////////////////////*****************//////// -->
-    <div class="site-section bg-left-half mb-5">
-      <div class="container owl-2-style">
-        <div class="container">
-          <div class="owl-carousel owl-2">
-           
-            {% for book in top_ranks %}
-                            <div class="media-29101">
-                                <div class="card">
-                                <a href="{% url 'books:Detail' book.id %}" > <img src="{{book.cover_book.url}}" alt="" /></a>
-                                <div class="info">
-                                    <a href="{% url 'books:Detail' book.id %}"> <h3>{{ book.title_book }}</h3></a>
-                                     <h4>السعر: <span>{{book.price}}</span></h4> 
-                                     <h4>عدد الصفحات: <span>{{book.pages}}</span></h4> 
-                                     <h4>المكتبة: <span>{{book.get_Stores}}</span></h4> 
-                                     <p class="card-text">{{book.description_book |truncatechars:90}}</p>
-                                </div>
-                                </div>
+       <!-- begin:partner -->
+    <div id="partner">
+      <div class="container">
+            <div class="row">
+              <div class="col-md-12 ">
+                <div class="heading-title bg-white">
+                  <h2>الأعلى تقييما</h2>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="jcarousel-wrapper">
+                            <div class="jcarousel">
+                              <ul>
+                                {% for book in top_ranks %}
+                                      <li><a href="{% url 'books:Detail' book.id  %}"><img src="{{book.cover_book.url}}" alt="{{ book.title_book }}"></a></li>
+                                      
+                                {% endfor %}
+                              </ul>
                             </div>
-
-            {% endfor %}
-
-
-          </div>
-        </div>
+                            <a href="#" class="jcarousel-control-prev"><i class="fa fa-angle-left"></i></a>
+                            <a href="#" class="jcarousel-control-next"><i class="fa fa-angle-right"></i></a>
+                            <!-- <p class="jcarousel-pagination"></p> -->
+                </div>
+              </div>
+            </div>
       </div>
     </div>
-
-   <!-- End portfolio الاكثر تقييما-->
+      <!-- end:partner -->

@@ -1,0 +1,95 @@
+{% extends 'tbase.html' %}
+{% load static %}
+
+{% comment %} مطلوب. 150 رمزاً أو أقل، مكونة من حروف وأرقام و @/./+/-/_ فقط {% endcomment %}
+
+
+
+{% comment %} 'avatar','phone','username','first_name','last_name','email', {% endcomment %}
+
+
+
+{% block title %}تسجيل حساب جديد {% endblock title %}
+{% block content %}
+{% if   user.is_authenticated %}
+    <meta http-equiv="REFRESH" content="0;url=/">
+{% else %}
+
+
+<div class="container text-center" style="magrin-top:10px">
+<div class="login-box">
+  <div class="login-logo">
+  </div>
+
+
+  <!-- /.login-logo -->
+  <div class="card col-12   " style="    margin-top: 84px; margin-left=auto; margin-right:auto ">
+    <div class="card-body col-lg-4 col-md-8 col-sm-12 login-card-body bg-warning"  style="padding-top:15px; background-color:#dcf6ef; ">
+      <h4 class="alert-dark  mt-2" style="padding:15px;  ">تسجيل  في الموقع       </h4>
+            {% if user_form.errors %}
+                <h5 class="alert-danger  mb-3" style="padding:7px ">حصل خطاء في تسجيل الدخول يرجى المحاولة مرة أخرى        </h5>
+          
+            {% endif %}
+    
+                 <form  method="post" name="form">
+                <div>
+                    {% csrf_token %}
+             
+                          {{user_form.as_p}}
+
+                    
+                    
+           
+                 </div>
+              <div class="modal-footer">
+                      <input type="submit" class="btn btn-primary btn-block btn-lg" value="تسجيل الدخول">
+            </div>
+              </form>
+
+
+
+      <div class="social-auth-links text-center mb-3">
+        <p>- أو -</p>
+        <a href="#" class="btn btn-block btn-primary" style="background-color:#3b5998 ;">
+        سجل الدخول بواسطة  حسابك في الفيسبوك  <i class="fa fa-facebook mr-4"></i>
+        </a>
+        <a href="#" class="btn btn-block btn-danger">
+            سجل الدخول بواسطة  حسابك في جوجل بلاس<i class="fa fa-google-plus mr-4"></i> 
+        </a>
+      </div>
+      <!-- /.social-auth-links -->
+
+      <p class="mb-1 mt-2">
+        <a href="forgot-password.html">هل لديك حساب؟ سجل الدخول</a>
+      </p>
+      <p class="mb-2 ">
+        <a href="register.html" class="text-center">تسجيل حساب جديد في الموقع</a>
+      </p>
+      <br>
+    </div>
+      <br>
+    <!-- /.login-card-body -->
+  </div>
+      <br>
+</div>
+</div>
+
+<script>
+    var inputs, index;
+    inputs = document.getElementsByTagName('input');
+    for (index = 0; index < inputs.length; ++index) {
+        inputs[index].classList.add("form-control");;
+    }
+</script>
+
+
+
+{% endif %}
+{% endblock content %}
+
+
+
+
+
+
+

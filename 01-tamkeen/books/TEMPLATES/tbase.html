@@ -1,0 +1,304 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  
+    <meta name="author" content="afriq yasin ramadhan">
+    <!-- <link rel="shortcut icon" href="img/favicon.png"> -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600;700;800&display=swap"  rel="stylesheet" />
+    <title>{% block title %}{% endblock title %}</title> 
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'tamkeen/css/bootstrap.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,600,800' rel='stylesheet' type='text/css'>
+    <link href="{% static 'tamkeen/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'tamkeen/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'tamkeen/css/responsive.css' %}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="{% static 'tamkeen/js/html5shiv.js' %}"></script>
+      <script src="{% static 'tamkeen/js/respond.min.js' %}"></script>
+    <![endif]-->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;500;700;800&display=swap" rel="stylesheet">
+
+  </head>
+
+  <body id="top">
+
+    <!-- begin:navbar -->
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-top">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html"><span>دار ومكتبة <strong>تمكين</strong> للنشر</span></a>
+          </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+          
+    
+            {% include 'books/partial/nav.html' %}
+        </div><!-- /.container -->
+      </nav>
+    <!-- end:navbar -->
+
+
+
+    <!-- begin:content --> 
+    
+            {% block content %} {% endblock content %}
+    <!-- end:content -->
+
+                     
+    <!-- begin:testimony -->
+      <div id="testimony" style=" background-image: url({% static 'tamkeen/img/book-bg.jpg' %}); ">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+              <div id="testislider" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="item active">
+                      <div class="testimony-container">
+                        <div class="testimony-image" style="background: url({% static 'tamkeen/img/team01.jpg' %})"></div>
+                        <div class="testimony-content">
+                          <h3>فاطمة علي</h3>
+                          <blockquote>
+                            <p>اصدارات تمكين جيدة جدا و هادفة و أنا راضية من اصداراتهم وتعاملهم و جودة الطباعة و المحتوى </p>
+                          </blockquote>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="item">
+                      <div class="testimony-container">
+                        <div class="testimony-image" style="background: url({% static 'tamkeen/img/team02.jpg' %})"></div>
+                        <div class="testimony-content">
+                          <h3>حسين عبد الرضا</h3>
+                          <blockquote>
+                            <p>أغلب الاصدارات الموجودة في هذه الموقع هي اصدارات اسلامية وهادفة و مفيدة </p>
+                          </blockquote>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="item">
+                      <div class="testimony-container">
+                        <div class="testimony-image" style="background: url({% static 'tamkeen/img/team03.jpg' %})"></div>
+                        <div class="testimony-content">
+                          <h3>أياد سامر</h3>
+                          <blockquote>
+                            <p>ببناء ملحق جانبي لهذا المقر الرئيسي. في سنة 1963م جرى تأميم الكثير من المنشآت العامة ومن ضمنها دار المعارف. حاليا يوجد
+                            لدار المعارف 21 فرعا في الجمهورية تقوم بعرض وبيع كافة إصدارات دار المعارف.</p>
+                          </blockquote>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <a class="right carousel-control" href="#testislider" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="left carousel-control" href="#testislider" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+              </div>              
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- end:testimony -->
+
+
+
+    <!-- begin:subscribe -->
+      <div id="subscribe">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-5 col-md-offset-2 col-sm-8 col-xs-12">
+              <h3>التسجيل في النشرة البريدية</h3>
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-12">
+              <div class="input-group">
+                <input type="text" class="form-control input-lg" placeholder="بريدك الالكتروني">
+                <span class="input-group-btn">
+                  <button class="btn btn-primary btn-lg" type="submit"><i class="fa fa-envelope"></i></button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- end:subscribe -->
+
+
+                          <!--ترجمه شده توسط مرجع تخصصی برنامه نویسان-->
+    <!-- begin:footer -->
+      <div id="footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="widget">
+                <h3>الفئات</h3>
+                <ul class="list-unstyled">
+                    {% for cat in categories %}
+                           <li><a href="{% url 'books:books_category' cat.id %}">{{ cat.name_category }}</a></li>
+                    {% endfor %}
+              
+                </ul>
+              </div>
+            </div>
+            <!-- break -->
+            <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="widget">
+                <h3>دور النشر</h3>
+                <ul class="list-unstyled">
+                {% for publisher in publishers %}
+                       <li><a  href="{% url 'books:books_Publisher' publisher.id %}" >{{ publisher.name_publisher }}</a></li>
+                {% endfor %}
+          
+          
+                </ul>
+              </div>
+            </div>
+            <!-- break -->
+            
+            <div class="col-md-3 col-sm-6 col-xs-12 pull-left">
+              <div class="widget">
+                <h2>دار ومكتبة تمكين للنشر</h2>
+        
+                <address>
+                  <strong>تمكين، حضارة مقاومة</strong><br>
+                  <br>
+                  <br>
+                  Tel. : +964 -771234567<br>
+                  Email : tamkeen@tamkeen.Org
+                </address>
+              </div>
+            </div>
+            <!-- break -->
+          </div>
+          <!-- break -->
+
+          <!-- begin:copyleft -->
+          <div class="row">
+            <div class="col-md-12 copyleft">
+
+              
+              <a href="#top" class="btn btn-primary scroltop"><i class="fa fa-angle-up"></i></a>
+              <ul class="list-inline social-links">
+                <li><a href="#" class="icon-twitter" rel="tooltip" title="" data-placement="bottom" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#" class="icon-facebook" rel="tooltip" title="" data-placement="bottom" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#" class="icon-gplus" rel="tooltip" title="" data-placement="bottom" data-original-title="Gplus"><i class="fa fa-google-plus"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <!-- end:copyleft -->
+
+        </div>
+      </div>
+    <!-- end:footer -->
+
+    <!-- begin:modal-signin -->
+      <div class="modal fade" id="modal-signin" tabindex="-1" role="dialog" aria-labelledby="modal-signin" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              {% comment %} <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> {% endcomment %}
+              <h4 class="modal-title">تسجيل الدخول</h4>
+            </div>
+            <div class="modal-body">
+              <form action="{% url 'account:login' %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="username">البريد الالكتروني</label>
+                  <input type="text" name="username" id="username" class="form-control input-lg" placeholder="البريد الالكتروني">
+                </div>
+                <div class="form-group">
+                  <label for="password">كلمة المرور</label>
+                  <input type="password" name="password" id="password"  class="form-control input-lg" placeholder="كلمة المرور">
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="forget">تذكرني
+                  </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+              {% comment %} <p>لا تملك حسابا   <a href="#modal-signup"  data-toggle="modal" data-target="#modal-signup">سجل في الموقع</p> {% endcomment %}
+              <input type="submit" class="btn btn-primary btn-block btn-lg" value="تسجيل الدخول">
+            </div>
+              </form>
+          </div>
+        </div>
+      </div>
+    <!-- end:modal-signin -->
+
+    <!-- begin:modal-signup -->
+      <div class="modal fade" id="modal-signup" tabindex="-1" role="dialog" aria-labelledby="modal-signup" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              {% comment %} <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> {% endcomment %}
+              <h4 class="modal-title">تسجيل</h4>
+            </div>
+            <div class="modal-body">
+              <form role="form">
+                <div class="form-group">
+                  <input type="البريد الالكتروني" class="form-control input-lg" placeholder="البريد الالكتروني">
+                </div>
+                <div class="form-group">
+                  <input type="كلمة المرور" class="form-control input-lg" placeholder="كلمة المرور">
+                </div>
+                <div class="form-group">
+                  <input type="تأكيد كلمة المرور" class="form-control input-lg" placeholder="تأكيد كلمة المرور">
+                </div>
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="agree"> اوافق على  <a href="#">شروط وقوانين الموقع</a> 
+                  </label>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <p>لديك حساب <a href="#modal-signin" data-toggle="modal" data-target="#modal-signin">تسجيل الدخول</a></p>
+              <input type="submit" class="btn btn-primary btn-block btn-lg" value="تسجيل">
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- end:modal-signup -->
+   
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'tamkeen/js/jquery.js' %}"></script>
+    <script src="{% static 'tamkeen/js/bootstrap.js' %}"></script>
+     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
+    <script src="{% static 'tamkeen/js/gmap3.min.js' %}"></script>
+    <script src="{% static 'tamkeen/js/jquery.easing.js' %}"></script>
+    <script src="{% static 'tamkeen/js/jquery.jcarousel.min.js' %}"></script>
+    <script src="{% static 'tamkeen/js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'tamkeen/js/masonry.pkgd.min.js' %}"></script>
+    <script src="{% static 'tamkeen/js/jquery.backstretch.js' %}"></script>
+    <script src="{% static 'tamkeen/js/jquery.nicescroll.min.js' %}"></script>
+    <script src="{% static 'tamkeen/js/script.js' %}"></script>
+
+    {% block domready %}
+
+    {% endblock domready %}
+
+  </body>
+</html>
+                          <!--ترجمه شده توسط مرجع تخصصی برنامه نویسان-->
+

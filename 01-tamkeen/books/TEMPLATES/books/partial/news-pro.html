@@ -1,0 +1,80 @@
+{% load static %}
+<!-- start new sections -->
+
+<div id="content">
+      <div class="container">
+        <!-- begin:latest -->
+              <div class="row">
+                  <div class="col-md-12">
+                    <div class="heading-title">
+                      <h2>أحدث اصدارات تمكين</h2>
+                    </div>
+                  </div>
+              </div>
+
+
+              <div class="row">
+
+                {% for book in news_pro %}
+
+                      <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="property-container">
+                          <div class="property-image" ">
+                            <div class="bg-image">                </div>
+                            <img src="{{ book.cover_book.url }}"  alt="{{ book.title_book }}">
+
+                            <div class="property-price">
+                              <!-- <h4>سلام على ابراهيم</h4> -->
+                              <span>
+                                {% for Publisher in book.Publishers.all %}
+                    
+                                    {% if not forloop.first %} - {% endif %}
+                                    
+                                    <a href="{% url 'books:books_Publisher' Publisher.id %}"
+                              
+                                      >{{Publisher.name_publisher}}</a> 
+                                {% endfor %}
+                              </span>
+                            </div>
+                            <div class="property-status">
+                              <span>
+                                  {% for cat in book.Categories.all %}
+                    
+                                    {% if not forloop.first %} - {% endif %}
+                                    
+                                    <a href="{% url 'books:books_category' cat.id %}"
+                              
+                                      >{{cat.name_category}}</a> 
+                                  {% endfor %}
+                              
+                              
+                              </span>
+                            </div>
+                          </div>
+                          <div class="property-features">
+                            <span title="عدد الصفحات"><i class="fa fa-book"></i> {{book.pages}} </span>
+                            <span title="سنة النشر"><i class="fa fa-calendar"></i>  {{book.y_publish}} </span>
+                            <span title="التقييم"><i class="fa fa-star"></i> 3</span>
+                            <span title="السعر"><i class="fa fa-money "></i>  {{book.price}} </span>
+                          
+                          </div>
+                          <div class="property-content">
+                            <h3><a href="{% url 'books:Detail' book.id  %}">{{ book.title_book }}</a> </h3>
+                              <p>{{book.description_book |truncatechars:90}}</p>
+                          </div>
+                        </div>
+                      </div>
+                    <!-- break -->
+
+
+                {% endfor %}
+
+
+              
+        
+              </div>
+        <!-- end:latest -->
+      </div>
+</div>
+
+<!--  end new sections -->

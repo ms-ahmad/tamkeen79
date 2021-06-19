@@ -1,16 +1,21 @@
-from django.urls import include, path, re_path
+from django.urls import  path, re_path
 
 
 from . import views
 
 
-app_name="books"
+app_name = "books"
 urlpatterns = [
     path('', views.Home, name="Home"),
     path('listbooks', views.ShowBooks, name="listbooks"),
     path('detail/<int:pk>', views.Detail, name="Detail"),
     path('l/', views.book_list, name="book_list"),
-    path('<int:pk>/', views.book_store, name="book_store"),
+    path('publisher/<int:pk>/', views.books_Publisher, name="books_Publisher"),
+    path('category/<int:pk>/', views.books_category, name="books_category"),
+    path('author/<int:pk>/', views.books_author, name="books_author"),
+    path('search/<int:cat_id>/<int:publisher_id>/<int:author_id>/<str:title_book>', views.search, name="search"),
+    # path('partial/nav.html', views.nav, name="nav"),
+
     # re_path(r'(?P<slug>[-\w]+)/',views.book_store, name="book_store2"),
 
 

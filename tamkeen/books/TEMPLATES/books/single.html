@@ -1,0 +1,215 @@
+{% extends 'tbase.html' %}
+
+{% load ratings %}
+{% load comment_tags %}  {# Loading the template tag #}
+
+
+
+{% block title %} مكتبة ودار تمكين للنشر - {{ object.title_book }} {% endblock title %}
+
+
+
+
+{% block content %}
+
+  <body id="top">
+
+
+    <!-- begin:content -->
+    
+    <div id="content" >
+      <div class="container" style=" padding-top: 11px";>
+        <div class="row">
+          <!-- begin:article -->
+          <div class="col-md-9 col-md-push-3 ">
+            <div class="row">
+              <div class="col-md-12 single-post">
+             
+
+                <div id="myTabContent" class="tab-content">
+                  <div class="tab-pane fade in active" id="detail">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <h2>{{ object.title_book }}</h2>
+                      
+                         <br>
+                          {% if  user.is_authenticated %}
+                   
+
+   
+
+                             <a id="addto"  class="btn  btn-success align-self-center" data-toggle="modal" data-target="#staticmodal">
+                                    <i class="fa   fa-shopping-cart" style="font-size:20px;" aria-hidden="true"></i> إضف إلى سلة المشتريات
+                                </a>
+                            {% else %}
+                              <a href="{% url 'account:login' %}"  class="badge text-center text-danger" >
+                                  لشراء هذا الكتاب يجب ان تقوم بتسجيل الدخول
+                                </a>
+                          {% endif %}
+                        <div id="slider-property" class="carousel slide" data-ride="carousel">
+                            <div class="img-single" style="text-align: center;">
+                              <img src=" {{ object.cover_book.url }}" alt="{{ object.title_book }}">
+                            </div>
+                   
+                          
+                  
+                        </div>
+                        <h3>معلومات الكتاب</h3>
+                        <table class="table table-bordered">
+                          <tr>
+                            <td ><strong>المؤلف</strong></td>
+                            <td>
+                              {% for auther in object.auther.all %}
+                                    {% if not forloop.first %} - {% endif %}  
+                                     <a href="{% url 'books:books_author' auther.id %}"> {{ auther.name_author}}</a> 
+                                 
+                              {% endfor %}
+                                
+                            
+                            </td>
+                          </tr>
+                          <tr>
+                            <td ><strong>تقييم الكتاب</strong></td>
+                            <td>  {% ratings object %}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>السعر</strong></td>
+                            <td>{{ object.price }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>عدد الصفحات</strong></td>
+                            <td>{{ object.pages }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>عدد الأجزاء</strong></td>
+                            <td>{{ object.values }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>دار النشر</strong></td>
+                            <td> 
+                                {% for Publisher in object.Publishers.all %}
+                                    {% if not forloop.first %} - {% endif %}
+                                       <a href="{% url 'books:books_Publisher' Publisher.id %}">{{Publisher.name_publisher}}</a> 
+                                {% endfor %}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td><strong>سنة النشر</strong></td>
+                            <td>{{ object.y_publish}}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>الفئة</strong></td>
+                            <td> {% for cat in object.Categories.all %}
+                    
+                                    {% if not forloop.first %} - {% endif %}
+                                    
+                                    <a href="{% url 'books:books_category' cat.id %}"
+                              
+                                      >{{cat.name_category}}</a> 
+                                  {% endfor %}
+                              </td>
+                          </tr>
+                          <tr>
+                            <td><strong>متوفر</strong></td>
+                            <td>{% if object.available %}متوفر
+                                {% else %}
+                                   <text class="btn-danger">غير متوفر
+                                {% endif %}
+                            </td>
+                          </tr>
+                        
+                        </table>
+         
+
+                        <h3>نبذة عن الكتاب</h3>
+                                                 
+                        <p style="text-align: justify;">
+                            {{ object.description_book}}
+                        </p>
+                      </div>
+                    </div>
+
+                    
+                  </div>
+                  <!-- break -->
+            
+                </div>
+    <div style="padding:10px">
+                 {% render_comments object request %}  {# Render all the comments belong to the passed object "obj" #}
+                {% comment %} {% include_bootstrap %}  {% endcomment %}
+    </div>
+              </div>
+            </div>
+          </div>
+     
+          <!-- end:article -->
+
+          <!-- begin:sidebar -->
+            {% include 'books/partial/sidebar.html' %}
+          <!-- end:sidebar -->
+          
+        </div>
+      </div>
+    </div>
+    <!-- end:content -->
+
+
+
+
+
+
+
+
+   <!-- Modal -->
+<div  class="modal fade" id="staticmodal" tabindex="-1" role="dialog" aria-labelledby="staticmodalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h5 class="modal-title" id="staticmodalLabel">إضافة إلى سلة المشتريات</h5>
+        <button type="button" id="btn_close" class="close  " data-dismiss="modal" aria-label="Close">
+          <span  aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {% comment %} <form  > {% endcomment %}
+
+            <div class="form-group">
+                <label for="quantity">حدد عدد النسخ لإضافتها في سلة المشتريات</label>
+                <input  type="number" class="form-control" value="1" name="quantity" id="quantity" autofocus placeholder="عدد النسخ">
+            </div>
+            <input type="hidden" name="book_id" id="book_id" value="{{ object.id }}" />
+ 
+
+ 
+      <div class="modal-footer">
+        <button id="sendbutton"  class="btn btn-success btn-block">إضافة</button>
+        <button type="button" class="btn  btn-outline-danger  " data-dismiss="modal">إلغاء</button>
+        {% comment %} </form> {% endcomment %}
+      </div>
+    </div>
+  </div>
+</div>
+   {% comment %} end modal {% endcomment %}
+{% endblock content %}
+
+
+
+
+{% block  domready %}
+    <script>   
+        $("#sendbutton").click(function(){
+            document.getElementById("btn_close").click()           
+            $.get("{% url 'orders:add_to_cart' %}",
+            {
+                book_id: $("#book_id").val(),
+                quantity: $("#quantity").val(),
+            },
+            function(data){
+                alert(data + Status );
+                }
+            );
+        });
+    </script>   
+
+{% endblock domready %}

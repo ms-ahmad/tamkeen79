@@ -1,40 +1,60 @@
-{% extends 'base.html' %}
-{% block title %} {{books.store.name_store}} {% endblock title %}
-{% block content %}
-    <div class="container">
-        {% if section %}   
+{% extends 'tbase.html' %} {% load static %} {% block content %}
 
+<!--ترجمه شده توسط مرجع تخصصی برنامه نویسان-->
 
-                <h1>{{section}}</h1>
-            
-        {% endif %} 
-        
-        <div id="book-list">
-            {% include "books/books_list_ajax.html" %}
+<!-- begin:content -->
+<div id="content">
+  <div class="container">
+    <div class="row">
+      <!-- begin:article -->
+      <div class="col-md-9 col-md-push-3" style="padding-top: 15px; background-color: white; margin-top: 10px">
+        <h4> {{ section }}</h4>
+        <br>
+        <!-- begin:product -->
+        <div id="booklist" class="row container-realestate">
+          {% include 'books/books_list_ajax.html' %}
         </div>
+        <!-- end:product -->
+      </div>
+      <!-- end:article -->
+      <!-- begin:sidebar -->
+      {% include 'books/partial/sidebar.html' %}
 
+      <!-- end:sidebar -->
     </div>
+  </div>
+</div>
+<!-- end:content -->
+
 {% endblock content %}
+
 {% block domready %}
-    var page=1;
-    var empty_page = false;
-    var block_request = false;
+<script>
+  var page = 1;
+  var empty_page = false;
+  var block_request = false;
 
-    $(window).scroll(function(){
-        var margin = $(document).height() - $(window).height()-10;
-        if($(window).scrollTop()>margin && empty_page==false && block_request == false){
-            block_request = true;
-            page+=1;
-            $.get('?page='+page, function(date){
-                if(date==''){
-                    empty_page=true;
-                }else{
-                    block_request = false;
-                    $('#book-list').append(date);
-                }
-            });
+  $(window).scroll(function () {
+    var margin = $(document).height() - $(window).height() - 500;
+
+    if (
+      $(window).scrollTop() > margin &&
+      empty_page == false &&
+      block_request == false
+    ) {
+      block_request = true;
+      page += 1;
+      $.get("?page=" + page, function (date) {
+        if (date == "") {
+          
+          empty_page = true;
+        } else {
+          block_request = false;
+          $("#booklist").append(date);
         }
-
-    });
+      });
+    }
+  });
+</script>
 
 {% endblock domready %}

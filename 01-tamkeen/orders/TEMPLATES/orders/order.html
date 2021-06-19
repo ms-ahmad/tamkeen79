@@ -1,0 +1,154 @@
+{% extends 'tbase.html' %}
+{% comment %} {% load static %} {% endcomment %}
+
+{% block title %} مكتبة ودار تمكين للنشر -سلة المشتريات {% endblock title %}
+
+
+
+
+
+
+
+
+
+{% block content %}
+
+  <body id="top">
+
+
+    <!-- begin:content -->
+    
+    <div id="content" >
+      <div class="container" style=" padding-top: 11px";>
+        <div class="row">
+          <!-- begin:article -->
+
+          <div class="col-md-9 col-md-push-3 m-push-cart">
+            <div class="row">
+              <div class="col-md-12 single-post single-cart">
+                <div id="myTabContent" class="tab-content cart-page">
+                  <div class="tab-pane fade in active cart-page" id="detail">
+                    <div class="row">
+                      <div class="col-md-12 col-cart">
+
+                          <h2>سلة المشتريات</h2>
+                              {% if order %}
+    
+                                <div class="card border-success mb-1">
+                                      <div class="card-header border-transparent">
+                                          <h4 class="card-title  mb-1">{{ order.order_date |date:"m /d/ Y" }}</h4>
+                                      </div>
+                                      <div class="card-body p-0" style="display: block;">
+                                          <div  iv class="table-responsive">
+                                              <table id="table" class="table m-0">
+                                                  <thead>
+                                                    <tr>
+                                                      <th>التاريخ</th>
+                                                      <th>عنوان الكتاب</th>
+                                                      <th>العدد</th>
+                                                      <th>سعر الواحد</th>
+                                                      <th>مجموع السعر</th>
+                                                      <th>حذف</th>
+                                                    </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                      {% for book in order_books %}
+                                                          <tr>                    
+                                                              <td>     {{ book.order.order_date |date:"m /d/ Y"  }}  </td>
+                                                              <td>    {{ book.book.title_book }}   </td>
+                                                              <td>      {{ book.quantity }}     </td>
+                                                              <td>      {{ book.price}}        </td>
+                                                              <td>      {{ book.total_price }}    </td>
+                                                              <td> <a class="btn btn-outline-danger" href="{% url 'orders:delete_from_cart' %}?orderDetails_id={{ book.id}}">حذف </a></td>
+                                                          </tr>
+                                                      {% endfor %}
+                                              
+                                                  </tbody>
+                    
+                                              </table>               
+                                          </div>
+                    
+                                      </div>
+                                      <div class="card-footer bg-text-dark border-success">
+                                            <span style="margin:0px 45px" id="val2">0000</span>                    
+                                            <span style="margin:0px 45px" id="val">0000</span>
+                                      </div>
+         
+           
+                                 </div>
+         
+
+                              {% else %}
+                                       <h4>لا توجد سلة مشتريات في الوقت الحالي</h4>
+
+                              {% endif %}
+ 
+     
+
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end:article -->
+
+          <!-- begin:sidebar -->
+            {% include 'books/partial/sidebar.html' %}
+          <!-- end:sidebar -->
+          
+        </div>
+      </div>
+    </div>       
+  
+    <!-- end:content -->
+
+  <script>
+
+        var table = document.getElementById("table"), sumVal = 0,sumValcount=0;
+
+        for(var i = 1; i < table.rows.length; i++)
+        {
+            sumVal = sumVal + parseInt(table.rows[i].cells[4].innerHTML);
+            sumValcount = sumValcount + parseInt(table.rows[i].cells[2].innerHTML);
+        }
+
+        document.getElementById("val").innerHTML = "السعر الاجمالي = " + sumVal;
+        document.getElementById("val2").innerHTML = "مجموع عدد الكتب  = " + sumValcount;
+
+
+</script>
+
+
+
+
+   
+   
+   
+   
+   
+
+{% endblock content %}
+
+
+
+
+{% block  domready %}
+    <script>   
+        $("#sendbutton").click(function(){
+            document.getElementById("btn_close").click()           
+            $.get("{% url 'orders:add_to_cart' %}",
+            {
+                book_id: $("#book_id").val(),
+                quantity: $("#quantity").val(),
+            },
+            function(data){
+                alert(data + Status );
+                }
+            );
+        });
+    </script>   
+
+{% endblock domready %}

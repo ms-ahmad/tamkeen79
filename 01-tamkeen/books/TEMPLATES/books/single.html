@@ -1,0 +1,175 @@
+{% extends 'tbase.html' %}
+{% load static %}
+
+
+{% block title %} مكتبة ودار تمكين للنشر - {{ book.title_book }} {% endblock title %}
+
+
+
+
+{% block content %}
+
+  <body id="top">
+
+
+    <!-- begin:content -->
+    
+    <div id="content" >
+      <div class="container" style=" padding-top: 11px";>
+        <div class="row">
+          <!-- begin:article -->
+          <div class="col-md-9 col-md-push-3 ">
+            <div class="row">
+              <div class="col-md-12 single-post">
+             
+
+                <div id="myTabContent" class="tab-content">
+                  <div class="tab-pane fade in active" id="detail">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <h2>{{ book.title_book }}</h2>
+                          {% if  user.is_authenticated %}
+                             <a id="addto"  class="btn  btn-success align-self-center" data-toggle="modal" data-target="#staticmodal">
+                                    <i class="fa   fa-shopping-cart" style="font-size:20px;" aria-hidden="true"></i> إضف إلى سلة المشتريات
+                                </a>
+                            {% else %}
+                              <a   class="badge text-center text-danger" >
+                                  لشراء هذا الكتاب يجب ان تقوم بتسجيل الدخول
+                                </a>
+                          {% endif %}
+                        <div id="slider-property" class="carousel slide" data-ride="carousel">
+                            <div class="img-single" style="text-align: center;">
+                              <img src=" {{ book.cover_book.url }}" alt="{{ book.title_book }}">
+                            </div>
+                   
+                          
+                  
+                        </div>
+                        <h3>معلومات الكتاب</h3>
+                        <table class="table table-bordered">
+                          <tr>
+                            <td ><strong>المؤلف</strong></td>
+                            <td>{{ book.get_Authors }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>السعر</strong></td>
+                            <td>{{ book.price }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>عدد الصفحات</strong></td>
+                            <td>{{ book.pages }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>عدد الأجزاء</strong></td>
+                            <td>{{ book.values }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>دار النشر</strong></td>
+                            <td> {{ book.get_Publishers }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>سنة النشر</strong></td>
+                            <td>{{ book.y_publish}}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>الفئة</strong></td>
+                            <td>{{ book.get_Categories }}</td>
+                          </tr>
+                          <tr>
+                            <td><strong>متوفر</strong></td>
+                            <td>{% if book.available %}متوفر
+                                {% else %}
+                                   <text class="btn-danger">غير متوفر
+                                {% endif %}
+                            </td>
+                          </tr>
+                        
+                        </table>
+         
+
+                        <h3>نبذة عن الكتاب</h3>
+                        <p style="text-align: justify;">
+                            {{ book.description_book}}
+                        </p>
+                      </div>
+                    </div>
+<!--ترجمه شده توسط مرجع تخصصی برنامه نویسان-->
+                    
+                  </div>
+                  <!-- break -->
+            
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end:article -->
+
+          <!-- begin:sidebar -->
+            {% include 'books/partial/sidebar.html' %}
+          <!-- end:sidebar -->
+          
+        </div>
+      </div>
+    </div>
+    <!-- end:content -->
+
+
+
+
+
+
+
+
+   <!-- Modal -->
+<div  class="modal fade" id="staticmodal" tabindex="-1" role="dialog" aria-labelledby="staticmodalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h5 class="modal-title" id="staticmodalLabel">إضافة إلى سلة المشتريات</h5>
+        <button type="button" id="btn_close" class="close  " data-dismiss="modal" aria-label="Close">
+          <span  aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {% comment %} <form  > {% endcomment %}
+
+            <div class="form-group">
+                <label for="quantity">حدد عدد النسخ لإضافتها في سلة المشتريات</label>
+                <input  type="number" class="form-control" value="1" name="quantity" id="quantity" autofocus placeholder="عدد النسخ">
+            </div>
+            <input type="hidden" name="book_id" id="book_id" value="{{ book.id }}" />
+ 
+
+ 
+      <div class="modal-footer">
+        <button id="sendbutton"  class="btn btn-success btn-block">إضافة</button>
+        <button type="button" class="btn  btn-outline-danger  " data-dismiss="modal">إلغاء</button>
+        {% comment %} </form> {% endcomment %}
+      </div>
+    </div>
+  </div>
+</div>
+   {% comment %} end modal {% endcomment %}
+{% endblock content %}
+
+
+
+
+{% block  domready %}
+    <script>   
+        $("#sendbutton").click(function(){
+            document.getElementById("btn_close").click()           
+            $.get("{% url 'orders:add_to_cart' %}",
+            {
+                book_id: $("#book_id").val(),
+                quantity: $("#quantity").val(),
+            },
+            function(data){
+                alert(data + Status );
+                }
+            );
+        });
+    </script>   
+
+{% endblock domready %}

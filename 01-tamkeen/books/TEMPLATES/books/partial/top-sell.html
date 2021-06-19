@@ -1,0 +1,40 @@
+{% load static %}
+
+
+    <!-- start top sell sections -->
+    <div class="top-sell" id="top-sell">
+      <div class="container">
+        <h2 class="special-heading">الأعلى مبيعاً</h2>
+        <p>إصدارات تمكين الاكثر مبيعا</p>
+      </div>
+    </div>
+    <div class="top-sell-content">
+      <div class="site-section bg-left-half mb-5">
+        <div class="container owl-2-style">
+          <div class="container" >
+            <div class="owl-carousel owl-2">
+
+                 {% for book in top_sell %}
+                            <div class="media-29101">
+                                <div class="card">
+                                 <a href="{% url 'books:Detail' book.id %}">  <img src="{{book.cover_book.url}}" alt="" /></a>
+                                <div class="info">
+                                      <a href="{% url 'books:Detail' book.id %}">  <h3>{{ book.title_book }}</h3></a>
+                                     <h4>السعر: <span>{{book.price}}</span></h4> 
+                                     <h4>عدد الصفحات: <span>{{book.pages}}</span></h4> 
+                                     <h4>المكتبة: <span>{{book.get_Stores}}</span></h4> 
+                                     <p class="card-text">{{book.description_book |truncatechars:90}}</p>
+                                </div>
+                                </div>
+                            </div>
+
+                {% endfor %}
+
+    
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--  end top sell sections -->

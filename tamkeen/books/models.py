@@ -1,8 +1,15 @@
+from star_ratings.models import Rating
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
-from account.models import User
+# from account.models import User
+from django.contrib.auth.models import User
 from django.utils import timezone
 import datetime
 from django.utils.text import slugify
+from star_ratings.models import Rating
+from django.contrib.contenttypes.fields import GenericRelation
+
+from comment.models import Comment
 
 # Create your models here.
 
@@ -104,8 +111,7 @@ class Book(models.Model):
     cover_book = models.ImageField(
         ("صورة "), upload_to="books/covers/", blank=True, null=True)
     auther = models.ManyToManyField(Authors, verbose_name=("المؤلف"))
-    price = models.DecimalField(
-        max_digits=7, decimal_places=0, verbose_name="السعر", blank=True, null=True)
+    price = models.PositiveIntegerField(verbose_name="السعر", blank=True, null=True)
     pages = models.PositiveIntegerField(("عدد الصفحات"), blank=True, null=True)
     values = models.PositiveIntegerField(
         ("عدد الاجزاء"), blank=True, null=True, default=1)
@@ -114,13 +120,15 @@ class Book(models.Model):
     Publishers = models.ManyToManyField(Publishers, verbose_name=("الناشر"))
     year_publish = models.DateField(
         ("سنة النشر"), auto_now_add=False, blank=True, null=True)
+    rate = GenericRelation(Rating, related_query_name='book')
+
 
     description_book = models.TextField( ("مختصر عن الكتاب"), blank=True, null=True)
     available = models.BooleanField(("متوفر"), default=True)
     publish = models.BooleanField(("يتم نشره"), default=False)
     showinSlideShow = models.BooleanField(("يظهر في السلايد"), default=False)
-    created = models.DateField(
-        ("تاريخ الإضافة"),  auto_now_add=True, null=True)
+    created = models.DateField(("تاريخ الإضافة"),  auto_now_add=True, null=True)
+    comments = GenericRelation(Comment)
 
     def __str__(self):
         return self.title_book
@@ -141,6 +149,8 @@ class Book(models.Model):
         return " - ".join([b.name_publisher for b in self.Publishers.all()])
 
 
+ 
+
     def get_Stores(self):
         return " - ".join([b.name_store for b in self.stores.all()])
 
@@ -149,3 +159,4 @@ class Book(models.Model):
     class Meta:
         verbose_name = "كتاب"
         verbose_name_plural = "كتب"
+
